@@ -1,0 +1,22 @@
+jQuery 判断是否包含某个属性
+
+1、Get the attribute, check the value
+
+var attr = $(this).attr('name');
+
+// For some browsers, `attr` is undefined; for others, `attr` is false. Check for both.
+if (typeof attr !== typeof undefined && attr !== false) {
+  // Element has this attribute
+}
+
+2、Native JavaScript has a way
+
+$(this)[0].hasAttribute("name");
+
+jQObject[0].hasAttribute("name");
+
+3、Filter the selection
+
+$(this).is('[name]');
+
+$(this).filter("[name='choice']");

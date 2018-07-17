@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>	
+	<meta charset="utf-8">
+	<title>根据兄弟元素的数量来设置样式</title>
+	<style type="text/css">
+
+	ul{display:flex;height:200px;}
+	ul li{list-style: none;flex:1;color:white;background: #D6E055;font-weight: bold;border:1px solid #655;}
+	ul li div{padding:1em;height:10%;}
+	ul li div .add{float:left;}
+	ul li div .add::before{content:'+';font-weight: bold;display: inline-block;width:20px;margin-right:.3em;border-radius: 50%;background:white;color:#590;text-align: center;line-height: 20px;}
+	ul li div .del{float:right;}
+	ul li div .del::before{content:'-';font-weight: bold;display: inline-block;width:20px;margin-right:.3em;border-radius: 50%;background:white;color:#590;text-align: center;line-height: 20px;}
+
+	/*
+	
+	【★重点】
+	题目：根据元素的数量选取全部兄弟元素并设置特定样式
+	1.其后兄弟选择符~  如.add ~ a 意为class有a样式的元素其后的所有<a>兄弟元素
+	2.:nth-last-child(an+b) 倒数第几个元素 -n+4 小于等于4的元素(4-n无效！！), n+4大于等于4的元素(4+n无效！！)
+	关键格式:first-child:nth-last-child(4)意为第一个且是倒数第4个元素的元素，只有总数为4时会被选中
+	：nth-last-child(n)参数支持n表达式，所以可以用来选择范围，nth-last-of-type(n)可用于同类型的兄弟元素选取
+
+	 */
+	ul li:first-child:nth-last-child(-n+4),
+	ul li:first-child:nth-last-child(-n+4)~li{background: yellowgreen;}
+
+	</style>
+</head>
+<body>
+	<ul>
+		<li>
+			<div>
+				<a class="add">Add</a>
+				<a class="del">Del</a>
+			</div>
+
+		</li>
+	</ul>
+	<div style="text-align: center;"><button onclick="ul.innerHTML += html">点我</button></div>
+	<script type="text/javascript">
+	var ul = document.getElementsByTagName("ul")[0],
+		html = ul.innerHTML;
+	</script>
+
+</body>
+</html>

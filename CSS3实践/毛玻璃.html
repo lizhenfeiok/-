@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>毛玻璃特效</title>
+
+		<style type="text/css">
+			/*
+			body有默认margin，最好重置
+			vh相对于窗口的高度,如8vh意为窗口高度的8%;
+			vw相对于视口的宽度。窗口被均分为100单位的vw，40vw相当于窗口宽度的40%;
+			calc() 动态计算长度值,运算符前后都需要保留一个空格，例如：width: calc(100% - 10px)；
+			background简写属性：颜色 图像 重复 滚动 位置 / 大小 起点 区域 (css2.1属性 / css3属性，无则取默认)  
+            background-size:背景图片大小,css3新增属性,可像img一样给其宽高就能指定其缩放大小，cover等比铺满容器(有超出部分不显示);  
+            【background简写时,除大小外，其他属性无顺序,有大小后，必须定义在位置之后并用 / 分隔】
+
+            【★关键】background-attachment:scroll|fixed;定义背景图的位置是相对于【窗口】的，还是相对于【包含块】的，
+            此例中，对main::before伪元素设置background-attachment:fixed，意为背景图位置相对于窗口的位置，所以结果是伪元素背景图不是将tiger.jpg完整填充到自己内部，而是完整填充到了窗口即与body同样的位置，那么伪元素背景只是其中一部分;
+
+            <blockquote>：块引用,左、右两边进行缩进（增加外边距）,行间引用用<q>
+            <main>：定义文档主体,一个文件只能出现一次main标签 
+            hsla：hsla(色调[0-360]，饱和度[0.0%-100.0%]，亮度[0.0%-100.0%]，透明度[0-1])，中间【逗号】隔开，无透明度可写为hsl
+            font简写：[font-style][font-variant(小型大写字母值small-caps)][font-weight][font-size(可用%)/line-height(值若为数字,则为缩放因子，后代元素会继承这个缩放因子而不是计算值)][font-family]  ①顺序不能改变，②font-size和line-height只能用 / 组成一个值不能分开写，③没有赋值用默认值
+            【简写时[font-size] 和 [font-family] 是不可忽略的】
+
+            【★重点】CSS3 filter(滤镜) ：-webkit-filter|filter:brightness(亮度%)|contrast(对比度%)|drop-shadow(阴影效果 x-shadow y-shadow blur spread color)|grayscale(灰度%)|hue-rotate(色相旋转deg)|invert(反色%)|opacity(透明度%)|saturate(饱和度%)|sepia(深褐色%)|blur(模糊度px)
+
+			 */
+			body{margin:0px;box-sizing: border-box;height:100vh;padding-top:calc(40vh - 3em);font:150%/1.6 "Microsoft YaHei";}
+			main{position:relative;max-width:23em;margin:0 auto;border-radius: .3em;background:hsla(0,0%,100%,.25) border-box;text-shadow: 0 1px 1px hsla(0,0%,100%,.3);box-shadow: 0 0 0 1px hsla(0,0%,100%,.25) inset,0 0.5em 1em rgba(0, 0, 0, 0.6);overflow: hidden;}
+			body,main::before{background:url(image/tiger.jpg) fixed 0 / cover;}
+			blockquote{font-style:italic;}
+			footer{font-style: normal;text-align: right}
+			main::before{content:'';position: absolute;top:0;left: 0;right: 0;bottom: 0;z-index:-1;margin:-30px;filter:blur(20px);}
+
+		</style>
+	</head>
+	<body>
+		<main>
+			<blockquote>
+			"文人作文，农人掘锄，本是平平常常的，若照相之际，文人偏要装做粗人，玩什么“荷锄带笠图”；农夫则在柳下捧一本书，装作“深柳读书图”之类，就要令人肉麻"。
+			<footer> —— 鲁迅</footer>
+			</blockquote>
+		</main>
+	</body>
+</html>

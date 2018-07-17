@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>条纹背景</title>
+	<style type="text/css">
+
+	.container{display: flex;}
+	.stripes{width:200px;height:200px;border:1px solid #fb3;margin:2em;}
+	/*
+	linear-gradient() 默认从上到下，to bottom,本质是由代码生成的图像，默认平铺，且可通过background-size调整尺寸
+	【★重点】如果把一个颜色的色标位置值设为0，那它的位置会被浏览器调整为前一个色标的位置值！！
+	 */
+	.horizontal{background: linear-gradient(#fb3 50%,#58a 0) top/100% 30px}
+	/*
+	 【★重点】渐变颜色值后只能跟一个数值，要么起始，要么终止，夹在中间颜色需先设起始色标位置，后设终止色标位置
+	 如 例子中的 #58a 0(起始),#58 66.6%(终止)
+	 */
+	.three{background:linear-gradient(#fb3 33.3%,#58a 0,#58a 66.6%,yellowgreen 0) top/100% 45px;}
+	.vertical{background:linear-gradient(to right,#fb3 50%,#58a 0)}
+	.skew{background:linear-gradient(to bottom right,#fb3 33.3%,#58a 0,#58a 66.6%,yellowgreen 0) top left}
+	/*
+	重复渐变：repeating-linear-gradient(),不用背景图片重复，而直接生成重复背景的图片，自动铺满背景。
+	！！请注意：这个方法不论条纹角度如何，我们在创建双色条纹时，都需要用到四个色标，即每个颜色都设定起止
+	 */
+	.repeat-skew{background:repeating-linear-gradient(60deg,#fb3 0,#fb3 15px,#58a 0,#58a 30px);}
+	/*
+	
+	条纹由主色系和浅色系变体组成适合用背景设定主色调，用渐变实现浅色变体色与透明色(背景色)的交错变化
+
+	 */
+	.background{background: #58a repeating-linear-gradient(60deg,hsla(0,0%,100%,.1) 0,hsla(0,0%,100%,.1) 15px,transparent 0,transparent 30px)}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="horizontal stripes"></div>
+		<div class="three stripes"></div>
+		<div class="vertical stripes"></div>
+		<div class="skew stripes"></div>
+		<div class="repeat-skew stripes"></div>
+		<div class="background stripes"></div>
+	</div>
+
+</body>
+</html>

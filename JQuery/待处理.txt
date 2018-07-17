@@ -1,0 +1,37 @@
+$(selector).select()
+
+(e.keyCode || e.which) == 13
+浏览器差异：Internet Explorer 使用 event.keyCode 取回被按下的字符，而 Netscape/Firefox/Opera 使用 event.which。
+
+url?+(+new Date)
+new Date是Date类型的，前面加上+可以转成毫秒，至于new Date后边没有小括号 这大概就是js独有的new对象的方式吧
+
+//4个结果一样返回当前时间的毫秒数
+alert(+new Date());
+alert(+new Date);
+var s=new Date();
+alert(s.valueOf());
+alert(s.getTime());
+
+ $('strong', this).length === 2 为什么是三个=
+==用于一般比较，===用于严格比较，==在比较的时候可以转换数据类型，===严格比较，只要类型不匹配就返回flase。
+
+举例说明：
+
+"1"  ==  true
+
+类型不同，"=="将先做类型转换，把true转换为1，即为 "1"  ==  1；
+
+此时，类型仍不同，继续进行类型转换，把"1"转换为1，即为 1 == 1；
+
+此时，"==" 左右两边的类型都为数值型，比较成功！
+
+如果比较："1"  ===  true 左侧为字符型，右侧为bool布尔型，左右两侧类型不同，结果为false；
+
+如果比较："1"  ===  1      左侧为字符型，右侧为int数值型，左右两侧类型不同，结果为false；
+
+如果比较： 1   ===  1       左侧为int数值型，右侧为int数值型，左右两侧类型相同，数值大小也相同，结果为true；
+
+如果比较： 1   ===  2      左侧为int数值型，右侧为int数值型，左右两侧类型相同，但数值大小不同，结果为false；
+
+简而言之就是 "==" 只要求值相等; "===" 要求值和类型都相等
