@@ -25,16 +25,16 @@ var date = {
 	},
 
 	that : {
-		//时间戳转日期对象
-		stampToObj : function(stamp){
-			return new Date(stamp);
-		},
-
-
 		//(xxxx/xx/xx xx:xx:xx),(xxxx-xx-xx)
 		strToStamp : function(str){
 			return Date.parse(str);
 		},
+
+		//时间戳转日期对象
+		stampToObj : function(stamp){
+			return new Date(stamp);
+		},
+		
 		//内部调用Date.parse()
 		strToObj : function(str){
 			return new Date(str);
