@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>切角和凹角效果</title>
+	<style type="text/css">
+	/*
+	background可以设置多个背景图像(包括属于图像数据格式的linear-gradient)，用,分隔; 如果定义了多个背景图片，而其他属性只有一个参数值，则表明所有图片都应用同一参数值
+	
+	【★难点】
+	1.理解linear-gradient()函数中的color后跟的数值含义，该数值表示前面颜色值，全是此颜色的，开始或停止处，第一个color后跟值表停止处，最后一个color后跟值表开始处;详细知识在文件夹《linear-gradient中》
+	2.radial-radient(<shape>,at <position>,<color-start>,...<color-stop> )
+	shape:circle 圆形 ellipse 椭圆;
+	position: 关键字 或 长度值，表示圆心的位置;
+	color-start|stop:同linear-gradient;
+	 */
+	div.linear-gradient{display:inline-block;margin:50px;width:300px;height:300px;background: 
+		linear-gradient(135deg, transparent 20px, #58a 0) top left,
+		linear-gradient(-135deg,transparent 20px,#58a 0) top right,
+		linear-gradient(-45deg,transparent 20px,#58a 0) bottom right,
+		linear-gradient(45deg,transparent 20px,#58a 0) bottom left;
+		background-size:50% 50%;background-repeat: no-repeat;}
+
+	div.radial-gradient{display:inline-block;margin:50px;width:300px;height:300px;background: 
+		radial-gradient(circle at top left, transparent 20px, #58a 0) top left,
+		radial-gradient(circle at top right,transparent 20px,#58a 0) top right,
+		radial-gradient(circle at bottom right,transparent 20px,#58a 0) bottom right,
+		radial-gradient(circle at bottom left,transparent 20px,#58a 0) bottom left;
+		background-size:50% 50%;background-repeat: no-repeat;}
+	</style>
+</head>
+<body>
+	<div class="linear-gradient"></div>
+
+	<div class="radial-gradient"></div>
+
+</body>
+</html>
