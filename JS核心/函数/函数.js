@@ -51,6 +51,7 @@
 
         //length表示函数定义的函数的参数：fn.length ,而不是实际接收的参数个数，实际接收的为: arguments.length
         //fn.prototype  是所有new fn()创建的实例的原型，为所有实例所共享
+        //自定义函数的prototype属性是一个对象，只有一个属性constructor指向构造函数自身
 
 
     //(2)每个函数包含三个方法：作用域相关
