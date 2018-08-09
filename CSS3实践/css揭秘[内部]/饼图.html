@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>饼图</title>
+	<style type="text/css">
+	/*
+	
+	利用border-radius
+	1.做半圆【元素的高度是宽度的一半，左上角和右上角的半径元素的高度一致】
+	2.做圆形【宽度和高度一致(正方形)，然后四个角设置为高度或者宽度的1/2.】
+	背景图像background-image放在背景色background-color之上
+	伪元素设定了margin-left为50%，margin-right默认为0，width默认auto，自动填充剩余空间,所以只写高度就可以了
+
+	【★重点】
+	逐帧动画：animation--timing-function(过渡类型)：linear,ease等都为线性过渡,只steps(间隔数量，start|end(默认值))函数为无过渡效果而是一帧帧的变化(逐帧变化)，step-start等同steps(1,start),step-end等同steps(1,end);
+
+	animation--timing-function的过渡类型作用于每两个关键帧之间，而不是整个keyframes之间！！！
+
+	steps(几段，start|end(默认值))：
+		第一个参数为间隔数量，必须为正整数，意为keyframes中定义的帧与帧之间分为几段(相当于在其中再定义帧)来过渡，而不是像linear那么样平滑线性过渡，
+		第二参数指定每一段的持续时间内展示的是上一段的效果(end),还是下一段的效果(start); step-start 动画开始时就展示下一段(第二段)的效果，step-end 动画开始时展示上一段的效果(第一段)
+	
+	例子中，bg相当于0% 50% 100%三帧，step-end在0%`50%之间插入一次，展示上一段效果(0%的yellowgreen色)，在50%`100%之间插入一次，展示上一段的效果(50%的时候变成的#655色)
+
+	 */
+	.half-pie{display:inline-block;margin:40px;width:200px;height:100px;border-radius: 100px 100px 0 0;background:yellowgreen;}
+	.pie{display:inline-block;margin:40px;width:150px;height:150px;border-radius: 50%;background: yellowgreen;background-image:linear-gradient(to right,transparent 50%,#655 0);overflow: hidden;}
+	.pie::before{content:'';display: block;background-color:inherit;margin-left: 50%;height:100%;transform-origin: left;animation:rotate 3s linear infinite,bg 6s step-end infinite;}
+	@keyframes rotate{to {transform:rotate(180deg);}}
+	@keyframes bg{50% {background-color:#655;}}
+	/*
+	【★重点】
+	1.静态定格：animation-delay(动画延迟)，负数的延时值是合法的，负的延时值可以用来直接跳至动画中的任意时间点，并且定格在那里，且需要让动画处于暂停状态(ainimation-play-state:paused)
+	
+	2.当需要动态修改伪元素的样式值时，可设为inherit，然后内联方式动态修改它的父元素值，来间接修改伪元素
+		pie.style.animationDelay = '-'+parseFloat(pie.innerHTML)+'s';
+	 */
+
+	.static.pie::before{animation:rotate 50s linear infinite,bg 100s step-end infinite;}/*方便百分比计算*/
+	.static.pie::before{animation-play-state:paused;animation-delay:inherit;}/*inherit取父元素,方便内联样式修改*/
+
+	</style>
+</head>
+<body>
+	<div class="half-pie"></div>
+	<div class="pie"></div>
+	<div class="static pie">90%</div>
+
+	<script type="text/javascript">
+		var pie = document.getElementsByClassName("static pie")[0];
+		pie.style.animationDelay = "-"+parseFloat(pie.innerHTML)+"s";
+	</script>
+</body>
+</html>

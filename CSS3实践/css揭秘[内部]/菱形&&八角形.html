@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>菱形&&八角形图片</title>
+	<style type="text/css">
+	/*
+	多重变形需写到一起，如：transform:rotate(-45deg) scale(1.4);若分开写：transform:rotate(-45deg);transform:scale(1.4)后边的放大效果会替换掉之前的旋转效果;
+	【★重点】
+	1.transitform:rotate(45deg)外层div旋转,内层图像-45deg转正,图像放大至容器大小般scale(1.4),容器overflow:hidden;
+	2.CSS3-clip-path:polygon(x y,x y,x y...);裁剪任意形状,参数为x点,y点坐标对,数量任意个,坐标对串联起来，首尾封合形成闭环区域，闭环内可见，外部不可见，变化过程可用transition平稳过渡。
+	 */
+	.container{display:inline-block;margin:80px;width:300px;height:300px;transform:rotate(45deg);overflow: hidden;}
+	.img{background:url(image/tiger.jpg) 0 / cover;width: 100%;height:100%;transform:rotate(-45deg)}
+	.ling.img{transform:rotate(-45deg) scale(1.4);}
+	.animation{background:url(image/tiger.jpg) 0 / cover;width: 300px;height:300px;margin:80px;-webkit-clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);transition: 1s}
+	.animation:hover{-webkit-clip-path:polygon(0 0,100% 0,100% 100%,0 100%);}
+	</style>
+</head>
+<body>
+	<div class="container"><div class="eight img"></div></div>
+	<div class="container"><div class="ling img"></div></div>
+	<div class="animation"></div>
+</body>
+</html>

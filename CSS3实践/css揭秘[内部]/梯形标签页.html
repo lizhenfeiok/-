@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>梯形标签页</title>
+	<style type="text/css">
+		/*
+		CSS3 - linear-gradient(渐变方向，渐变颜色)：创建颜色线性渐变图片,是图片类型，只能放在可以应用image类型的地方，不能放在background-color等使用color数据类型的地方，且相比于图片,它没有固定尺寸，大小取决于容器大小，例子中是做background-image数据类型使用的。
+		渐变方向：Xdeg|关键字(to left 从右到左,to right 从左到右,to top to bottom【默认从上到下渐变】)
+		渐变颜色：渐变color值 位置(【为可选的全是此颜色的起点或终点处,详见《linear-gradient》】，长度值)，...
+		如：linear-gradient(to left top, blue, red) 从右下到左上、从蓝色渐变到红色
+
+		【★重点】
+		1.transform:perspective(length值) rotateX(Xdeg) 在3D空间以X轴为轴进行旋转，可以使元素变形为梯形;
+		2.transform-origin:bottom 以底边为轴进行旋转,减少以默认中线为轴带来的宽度增加，位置偏移等难以控制的因素影响
+		3.直接使用元素变形视图会使字体也变形翻转,所以使用::before伪元素创造变形翻转背景;
+		4.做元素的同等背景（当我们想变形一个元素而不想变形它的内容时）：
+			ele{position:relative;---其他样式-----}
+			ele::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;}
+		 */
+		body{margin:0px;padding:50px;font:80%/2 "Microsoft YaHei";}
+		nav{position:relative;z-index: 1;padding-left:1em;}
+		nav > a{display:inline-block;position:relative;color:inherit;padding:.3em 1em 0;text-decoration: none;margin:0 -.3em;}
+		nav > a::before,main{border:.1em solid rgba(0,0,0,.4);}
+		nav > a::before{content:'';position:absolute;top:0;left: 0;right: 0;bottom: 0;z-index: -1;border-bottom: none;border-radius: .2em .2em 0 0;background:#ccc linear-gradient(hsla(0,0%,100%,.6),hsla(0,0%,100%,0));transform:scale(1.1,1.3) perspective(.5em) rotateX(5deg);transform-origin:bottom;}
+		nav > a.selected{z-index: 2;}
+		nav > a.selected::before{background-color:#eee;margin-bottom:-.11em;}
+		main{background:#eee;padding:1em;border-radius: .15em;}
+	</style>
+</head>
+<body>
+	<nav>
+		<a href="#">首页</a>
+		<a href="#" class="selected">我的会议</a>
+		<a href="#">摆渡文件</a>
+	</nav>
+	<main>
+		Content Area
+	</main>
+
+</body>
+</html>

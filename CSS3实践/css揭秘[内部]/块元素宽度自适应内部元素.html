@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>块元素宽度自适应内部元素</title>
+	<style type="text/css">
+	/*
+	块元素的高度根据内容自适应，但【margin默认为0，宽度是默认撑满父元素宽度】，现在想宽度能根据内容确定：	
+
+	【★重点】width:min-content;这个关键字将解析为这个容器内部最大的不可断行元素的宽度（即最宽的单词，图片或具有固定宽度的盒元素）
+
+	 */
+	figure{border:1px solid #ddd;margin:auto;width:min-content;}
+	</style>
+</head>
+<body>
+	<p>sdfjidsjfisdjfdjkkkkkkkkkkkkk</p>
+	<figure>
+		<img width="300px" height="300px" src="image/tiger.jpg">
+		<figcaption>dfhusdafsdklfjsdlfjsd啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊反对双方的身份的范德萨 非</figcaption>	
+	</figure>
+	<p>fsdssssssssssssssssssssssssssssssssssssssfasdf</p>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>扩大可点击区域</title>
+	<style type="text/css">
+
+	main{padding:5em;}
+	button{position:relative;cursor:pointer;width:70px;height:70px;background: yellowgreen;border-radius: 50%;	
+	/*
+	 1.通过设置透明边框
+	 CSS3 background-clip背景区域,默认border-box(含边框内),padding-box(不含边框内)
+	 box-shadow 0(边框) 0(边框) 0(模糊值) 1px(外延值,伪造边框宽度) inset(边框内) 利用阴影来生成边框
+	*/
+	/* border:20px solid transparent;background-clip: padding-box;box-shadow:0 0 0 1px inset; */
+	}
+	/*
+	2.通过设置伪元素区域
+	【★重点】
+	伪元素同样可以代替其宿主元素来影响鼠标交互！！！
+	绝对定位的top,bottom,left,right可以取负值，同取-10px,向外扩大10px！！！
+
+	*/
+	button::before{content:'';position: absolute;top:-10px;right:-10px;bottom:-10px;left:-10px;}
+
+	</style>
+</head>
+<body>
+	<main>
+		<button>+</button>
+	</main>
+
+</body>
+</html>
